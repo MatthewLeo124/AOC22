@@ -20,7 +20,7 @@ def p2(lines):
 
 setup_points()
 with open("input.txt", "r") as f:
-    #print(sum(map(p1, f)))
+    print(sum(map(p1, f)))
     f.seek(0, 0)
     total = 0
     for t_lines in iter(lambda: tuple(islice(f, 3)), ()):
