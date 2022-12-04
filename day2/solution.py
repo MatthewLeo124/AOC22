@@ -73,8 +73,7 @@ def p2(line):
 
 with open("input.txt", "r") as f:
     p1_s = sum(map(p1, f))
-
-with open("input.txt", "r") as f:
+    f.seek(0,0)
     p2_s = sum(map(p2, f))
 
 print(p1_s)
