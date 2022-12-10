@@ -37,7 +37,21 @@ class TreeNode:
     def add_child(self, name, data = 0):
         to_add = TreeNode(self, name, data)
         self.children.append(to_add)
-    
+
+def find_req_space(names, sizes):
+    total_space = 70_000_000
+    needed_space = 30_000_000
+    unused = total_space - root.size
+    needed = needed_space - unused
+    least = -1<<64 - 1
+    val = 0
+    for size in sizes:
+        diff = needed - size
+        if diff > least and diff < 0:
+            least = diff
+            val = size
+    return val
+
 def get_subfolder_size(node, names, sizes):
     if not node.children:
         return
@@ -102,20 +116,10 @@ root = create_tree()
 
 #Part 1 
 calculate_size(root)
-#print(print_size(root))
+print(f"Part 1: {print_size(root)}")
 
 #Part 2
 names = []
 sizes = []
-total_space = 70_000_000
-needed_space = 30_000_000
-our_needed_space = abs(needed_space - root.size)
 get_subfolder_size(root, names, sizes)
-
-least = []
-for size in sizes:
-    curr_least = our_needed_space - size
-    if curr_least < 0:
-        least.append((curr_least, size))
-
-print(least)
+print(f"Part 2: {find_req_space(names, sizes)}")
